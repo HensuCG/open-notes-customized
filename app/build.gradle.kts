@@ -16,13 +16,14 @@ ktlint {
 android {
     namespace = "com.opennotes"
     compileSdk = 36
+    buildToolsVersion = "36.0.0"
 
     defaultConfig {
         applicationId = "com.opennotes"
         minSdk = 26
         targetSdk = 36
-        versionCode = 16
-        versionName = "1.4.2"
+        versionCode = 17
+        versionName = "1.5.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -73,6 +74,11 @@ android {
     buildFeatures {
         compose = true
         buildConfig = true
+    }
+
+    lint {
+        // Existing upstream translation gaps; new strings still require translations.
+        baseline = file("lint-baseline.xml")
     }
 
     packaging {

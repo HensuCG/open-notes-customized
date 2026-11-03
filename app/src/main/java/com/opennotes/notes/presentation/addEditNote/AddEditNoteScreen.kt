@@ -43,6 +43,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.filled.FormatListNumbered
 import androidx.compose.material.icons.filled.Image
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.MoreVert
@@ -67,6 +68,8 @@ import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -95,6 +98,7 @@ fun AddEditNoteScreen(
 ) {
     val titleState = viewModel.noteTitle.value
     val contentState = viewModel.noteContent.value
+    val autoNumberLines = viewModel.autoNumberLines.value
     val context = LocalContext.current
     val haptic = LocalHapticFeedback.current
     val snackbarHostState = remember { SnackbarHostState() }
@@ -109,6 +113,11 @@ fun AddEditNoteScreen(
             androidx.compose.ui.text.input
                 .TextFieldValue(text = contentState.text),
         )
+    }
+
+    fun updateContent(value: androidx.compose.ui.text.input.TextFieldValue) {
+        contentTextFieldValue = if (autoNumberLines) LineNumbering.renumber(value) else value
+        viewModel.onEvent(AddEditNoteEvent.EnteredContent(contentTextFieldValue.text))
     }
 
     val photoPickerLauncher =
@@ -261,8 +270,7 @@ fun AddEditNoteScreen(
                         FormatToolbar(
                             contentColor = contentColor,
                             onFormatClick = { format ->
-                                contentTextFieldValue = MarkdownFormatter.injectMarkdown(format, contentTextFieldValue)
-                                viewModel.onEvent(AddEditNoteEvent.EnteredContent(contentTextFieldValue.text))
+                                updateContent(MarkdownFormatter.injectMarkdown(format, contentTextFieldValue))
                             },
                         )
                     }
@@ -271,6 +279,29 @@ fun AddEditNoteScreen(
                         contentColor = contentColor,
                     ) {
                         if (isEditingMode) {
+                            val numberingState = stringResource(if (autoNumberLines) R.string.line_numbering_on else R.string.line_numbering_off)
+                            FilledIconToggleButton(
+                                checked = autoNumberLines,
+                                onCheckedChange = { enabled ->
+                                    if (enabled) {
+                                        contentTextFieldValue = LineNumbering.renumber(contentTextFieldValue)
+                                    }
+                                    viewModel.onEvent(AddEditNoteEvent.ToggleLineNumbering)
+                                },
+                                modifier = Modifier.semantics { stateDescription = numberingState },
+                                colors =
+                                    IconButtonDefaults.filledIconToggleButtonColors(
+                                        containerColor = contentColor.copy(alpha = 0.15f),
+                                        contentColor = contentColor,
+                                        checkedContainerColor = contentColor.copy(alpha = 0.35f),
+                                        checkedContentColor = contentColor,
+                                    ),
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Default.FormatListNumbered,
+                                    contentDescription = stringResource(R.string.auto_number_lines),
+                                )
+                            }
                             FilledIconButton(
                                 onClick = { showColorPicker = true },
                                 colors =
@@ -425,8 +456,7 @@ fun AddEditNoteScreen(
                         onTitleChange = { viewModel.onEvent(AddEditNoteEvent.EnteredTitle(it)) },
                         onTitleFocusChange = { viewModel.onEvent(AddEditNoteEvent.ChangeTitleFocus(it)) },
                         onContentChange = {
-                            contentTextFieldValue = it
-                            viewModel.onEvent(AddEditNoteEvent.EnteredContent(it.text))
+                            updateContent(it)
                         },
                         onContentFocusChange = {
                             viewModel.onEvent(

@@ -48,6 +48,7 @@ class DataStoreRepository
             private val THEME_MODE = stringPreferencesKey("theme_mode")
             private val APP_ICON = stringPreferencesKey("app_icon")
             private val BLACK_THEME = booleanPreferencesKey("black_theme")
+            private val PURE_BLACK_WIDGETS = booleanPreferencesKey("pure_black_widgets")
 
             private val COLOR_SCHEME = stringPreferencesKey("color_scheme")
             private val DYNAMIC_COLOR = booleanPreferencesKey("dynamic_color")
@@ -71,6 +72,7 @@ class DataStoreRepository
                 preferences[THEME_MODE] = settings.themeMode.name
                 preferences[APP_ICON] = settings.appIcon.name
                 preferences[BLACK_THEME] = settings.blackTheme
+                preferences[PURE_BLACK_WIDGETS] = settings.pureBlackWidgets
                 preferences[COLOR_SCHEME] = settings.colorScheme.toString()
                 preferences[DYNAMIC_COLOR] = settings.dynamicColor
                 preferences[BIOMETRIC_LOCK] = settings.biometricLock
@@ -149,6 +151,7 @@ class DataStoreRepository
                         themeMode = themeMode,
                         appIcon = appIcon,
                         blackTheme = blackTheme,
+                        pureBlackWidgets = preferences[PURE_BLACK_WIDGETS] ?: false,
                         colorScheme = colorScheme,
                         dynamicColor = dynamicColor,
                         biometricLock = biometricLock,
@@ -197,6 +200,7 @@ class DataStoreRepository
             return Settings(
                 themeMode = themeMode,
                 blackTheme = prefs[BLACK_THEME] ?: defaultSettings.blackTheme,
+                pureBlackWidgets = prefs[PURE_BLACK_WIDGETS] ?: defaultSettings.pureBlackWidgets,
                 biometricLock = prefs[BIOMETRIC_LOCK] ?: defaultSettings.biometricLock,
                 secureScreen = prefs[SECURE_SCREEN] ?: defaultSettings.secureScreen,
                 openInReadingMode = prefs[OPEN_IN_READING_MODE] ?: defaultSettings.openInReadingMode,

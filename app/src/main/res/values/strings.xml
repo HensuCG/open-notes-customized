@@ -131,6 +131,11 @@
     <string name="dynamic_color_subtitle">Adapt theme colors from your wallpaper</string>
     <string name="black_theme_title">Black Theme</string>
     <string name="black_theme_subtitle_enabled">Use a pure black dark theme</string>
+    <string name="pure_black_widgets_title">Pure black widgets</string>
+    <string name="pure_black_widgets_subtitle">Use black backgrounds and white text for both home screen widgets</string>
+    <string name="auto_number_lines">Automatically number lines</string>
+    <string name="line_numbering_on">Automatic line numbering on</string>
+    <string name="line_numbering_off">Automatic line numbering off</string>
     <string name="black_theme_subtitle_disabled">Use regular dark colors</string>
     <string name="backup_restore_title">Backup and Restore</string>
     <string name="export_notes_title">Export Notes</string>

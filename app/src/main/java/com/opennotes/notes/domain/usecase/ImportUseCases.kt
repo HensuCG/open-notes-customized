@@ -58,33 +58,7 @@ class ImportUseCases(
             // Validate and construct trusted Note objects
             val validNotes =
                 rawNotes.mapNotNull { element ->
-                    val rawNote = element as? JsonObject ?: return@mapNotNull null
-                    val title = rawNote["title"]?.jsonPrimitive?.contentOrNull?.trim()
-                    val content = rawNote["content"]?.jsonPrimitive?.contentOrNull?.trim()
-
-                    // Robust time mapping: createdAt -> timestamp -> now
-                    val now = System.currentTimeMillis()
-                    val createdAt =
-                        rawNote["createdAt"]?.jsonPrimitive?.longOrNull
-                            ?: rawNote["timestamp"]?.jsonPrimitive?.longOrNull
-                            ?: now
-
-                    val updatedAt = rawNote["updatedAt"]?.jsonPrimitive?.longOrNull ?: createdAt
-                    val color = rawNote["color"]?.jsonPrimitive?.intOrNull ?: 0 // Default to transparent/black if missing
-
-                    // Only create Note if it has at least some content or title
-                    if (title?.isNotBlank() == true || content?.isNotBlank() == true) {
-                        Note(
-                            title = title ?: "",
-                            content = content ?: "",
-                            createdAt = createdAt,
-                            updatedAt = updatedAt,
-                            color = color,
-                            id = null,
-                        )
-                    } else {
-                        null // Skip empty notes
-                    }
+                    (element as? JsonObject)?.let(::noteFromBackup)
                 }
 
             if (validNotes.isEmpty()) {
@@ -98,5 +72,36 @@ class ImportUseCases(
             e.printStackTrace()
             ImportResult.Error("Failed to import notes: ${e.localizedMessage}")
         }
+    }
+}
+
+/** Shared by the import path and backup compatibility tests. */
+internal fun noteFromBackup(rawNote: JsonObject): Note? {
+    val title = rawNote["title"]?.jsonPrimitive?.contentOrNull?.trim()
+    val content = rawNote["content"]?.jsonPrimitive?.contentOrNull
+
+    // Robust time mapping: createdAt -> timestamp -> now
+    val now = System.currentTimeMillis()
+    val createdAt =
+        rawNote["createdAt"]?.jsonPrimitive?.longOrNull
+            ?: rawNote["timestamp"]?.jsonPrimitive?.longOrNull
+            ?: now
+
+    val updatedAt = rawNote["updatedAt"]?.jsonPrimitive?.longOrNull ?: createdAt
+    val color = rawNote["color"]?.jsonPrimitive?.intOrNull ?: 0 // Default to transparent/black if missing
+
+    // Only create Note if it has at least some content or title
+    return if (title?.isNotBlank() == true || content?.isNotBlank() == true) {
+        Note(
+            title = title ?: "",
+            content = content ?: "",
+            createdAt = createdAt,
+            updatedAt = updatedAt,
+            color = color,
+            id = null,
+            autoNumberLines = rawNote["autoNumberLines"]?.jsonPrimitive?.booleanOrNull ?: false,
+        )
+    } else {
+        null // Skip empty notes
     }
 }

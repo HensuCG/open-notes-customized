@@ -18,9 +18,11 @@
 
 package com.opennotes.settings.presentation
 
+import android.content.Context
 import android.net.Uri
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
+import androidx.glance.appwidget.updateAll
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.opennotes.R
@@ -32,7 +34,10 @@ import com.opennotes.settings.data.repository.DataStoreRepository
 import com.opennotes.settings.domain.model.NotesLayout
 import com.opennotes.settings.domain.model.Settings
 import com.opennotes.settings.domain.model.ThemeMode
+import com.opennotes.widget.AddNoteWidget
+import com.opennotes.widget.NotesWidget
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -54,6 +59,7 @@ class SettingsViewModel
     constructor(
         private val noteUseCases: NoteUseCases,
         private val dataStoreRepository: DataStoreRepository,
+        @ApplicationContext private val context: Context,
     ) : ViewModel() {
         val settings: StateFlow<Settings> =
             dataStoreRepository
@@ -111,6 +117,14 @@ class SettingsViewModel
             val newSettings = settings.value.copy(blackTheme = blackTheme)
             viewModelScope.launch {
                 dataStoreRepository.saveSettings(newSettings)
+            }
+        }
+
+        fun updatePureBlackWidgets(enabled: Boolean) {
+            viewModelScope.launch(Dispatchers.IO) {
+                dataStoreRepository.saveSettings(settings.value.copy(pureBlackWidgets = enabled))
+                NotesWidget().updateAll(context)
+                AddNoteWidget().updateAll(context)
             }
         }
 

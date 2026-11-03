@@ -36,6 +36,7 @@ data class Settings(
     val themeMode: ThemeMode = ThemeMode.SYSTEM,
     val appIcon: AppIcon = AppIcon.DEFAULT,
     val blackTheme: Boolean = false,
+    val pureBlackWidgets: Boolean = false,
     val biometricLock: Boolean = false,
     val secureScreen: Boolean = false,
     val openInReadingMode: Boolean = false,

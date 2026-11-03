@@ -28,7 +28,6 @@ import androidx.core.net.toUri
 import androidx.glance.GlanceModifier
 import androidx.glance.GlanceTheme
 import androidx.glance.LocalContext
-import androidx.glance.action.actionStartActivity
 import androidx.glance.action.clickable
 import androidx.glance.appwidget.action.actionStartActivity
 import androidx.glance.appwidget.cornerRadius
@@ -47,7 +46,10 @@ import com.opennotes.R
 import com.opennotes.notes.domain.model.Note
 
 @Composable
-fun ZeroState(widgetId: Int) {
+fun ZeroState(
+    widgetId: Int,
+    pureBlack: Boolean = false,
+) {
     val context = LocalContext.current
     Column(
         verticalAlignment = Alignment.CenterVertically,
@@ -55,15 +57,20 @@ fun ZeroState(widgetId: Int) {
         modifier =
             GlanceModifier
                 .fillMaxSize()
-                .background(GlanceTheme.colors.surfaceVariant)
+                .background(if (pureBlack) ColorProvider(day = Color.Black, night = Color.Black) else GlanceTheme.colors.surfaceVariant)
                 .cornerRadius(16.dp)
-                .clickable(actionStartActivity<NotesWidgetConfigActivity>()),
+                .clickable(
+                    actionStartActivity(
+                        Intent(context, NotesWidgetConfigActivity::class.java)
+                            .putExtra(android.appwidget.AppWidgetManager.EXTRA_APPWIDGET_ID, widgetId),
+                    ),
+                ),
     ) {
         Text(
             text = context.getString(R.string.widget_tap_to_select),
             style =
                 TextStyle(
-                    color = GlanceTheme.colors.onSurfaceVariant,
+                    color = if (pureBlack) ColorProvider(day = Color.White, night = Color.White) else GlanceTheme.colors.onSurfaceVariant,
                     fontWeight = FontWeight.Medium,
                     fontSize = 14.sp,
                 ),
@@ -75,6 +82,7 @@ fun ZeroState(widgetId: Int) {
 fun SelectedNote(
     note: Note,
     widgetId: Int,
+    pureBlack: Boolean = false,
 ) {
     val isDefaultColor = note.color == 0xFF000000.toInt() || note.color == 0xFFF5F5F5.toInt()
 
@@ -83,7 +91,9 @@ fun SelectedNote(
             GlanceModifier
                 .fillMaxSize()
                 .background(
-                    if (isDefaultColor) {
+                    if (pureBlack) {
+                        ColorProvider(day = Color.Black, night = Color.Black)
+                    } else if (isDefaultColor) {
                         GlanceTheme.colors.surfaceVariant
                     } else {
                         ColorProvider(day = Color(note.color), night = Color(note.color))
@@ -102,7 +112,9 @@ fun SelectedNote(
                 ),
     ) {
         val contentColor =
-            if (isDefaultColor) {
+            if (pureBlack) {
+                ColorProvider(day = Color.White, night = Color.White)
+            } else if (isDefaultColor) {
                 GlanceTheme.colors.primary
             } else if (Color(note.color).luminance() < 0.5f) {
                 ColorProvider(day = Color.White, night = Color.White)

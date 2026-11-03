@@ -47,6 +47,8 @@ sealed class AddEditNoteEvent {
 
     object SaveNote : AddEditNoteEvent()
 
+    object ToggleLineNumbering : AddEditNoteEvent()
+
     data class SetReminder(
         val timestamp: Long?,
         val repeatInterval: Long? = null,

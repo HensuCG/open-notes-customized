@@ -18,6 +18,7 @@
 
 package com.opennotes.notes.data.datasource
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.opennotes.notes.domain.model.Note
@@ -34,6 +35,7 @@ data class NoteEntity(
     val repeatInterval: Long? = null,
     val repeatUnit: String? = null,
     @PrimaryKey val id: Int? = null,
+    @ColumnInfo(defaultValue = "0") val autoNumberLines: Boolean = false,
 ) {
     fun toNote(): Note =
         Note(
@@ -47,6 +49,7 @@ data class NoteEntity(
             repeatInterval = repeatInterval,
             repeatUnit = repeatUnit,
             id = id,
+            autoNumberLines = autoNumberLines,
         )
 }
 
@@ -62,4 +65,5 @@ fun Note.toNoteEntity(): NoteEntity =
         repeatInterval = repeatInterval,
         repeatUnit = repeatUnit,
         id = id,
+        autoNumberLines = autoNumberLines,
     )

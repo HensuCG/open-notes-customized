@@ -32,6 +32,7 @@ data class Note(
     val repeatInterval: Long? = null,
     val repeatUnit: String? = null,
     val id: Int? = null,
+    val autoNumberLines: Boolean = false,
 )
 
 class InvalidNoteException(

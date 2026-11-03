@@ -107,4 +107,9 @@
     <string name="unit_months">Mois</string>
     <string name="unit_years">Années</string>
     <string name="every">Tous</string>
+    <string name="pure_black_widgets_title">Widgets noir pur</string>
+    <string name="pure_black_widgets_subtitle">Utiliser un fond noir et du texte blanc pour les deux widgets</string>
+    <string name="auto_number_lines">Numéroter automatiquement les lignes</string>
+    <string name="line_numbering_on">Numérotation automatique activée</string>
+    <string name="line_numbering_off">Numérotation automatique désactivée</string>
 </resources>

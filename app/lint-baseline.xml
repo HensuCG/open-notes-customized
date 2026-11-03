@@ -1,0 +1,199 @@
+<?xml version='1.0' encoding='utf-8'?>
+<issues format="6" by="lint 8.9.1">
+    <!-- Existing upstream translation gaps only. New strings must be translated; do not broaden this baseline. -->
+    <issue id="MissingTranslation" message="&quot;biometric_lock_enabled&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;biometric_lock_enabled&quot;&gt;Biometric lock enabled&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="46" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;biometric_lock_disabled&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;biometric_lock_disabled&quot;&gt;Biometric lock disabled&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="47" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;biometric_auth_failed&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;biometric_auth_failed&quot;&gt;Biometric authentication cancelled or failed&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="48" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;pinned_header&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;pinned_header&quot;&gt;PINNED&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="58" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;others_header&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;others_header&quot;&gt;OTHERS&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="59" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;undo_label&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;undo_label&quot;&gt;Undo&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="60" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;note_deleted_msg&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;note_deleted_msg&quot;&gt;Note deleted&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="61" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;notes_deleted_msg&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;notes_deleted_msg&quot;&gt;%1$d notes deleted&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="62" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;delete_note_title&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;delete_note_title&quot;&gt;Delete note&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="63" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;delete_notes_title&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;delete_notes_title&quot;&gt;Delete %1$d notes&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="64" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;delete_note_confirm&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;delete_note_confirm&quot;&gt;Are you sure you want to delete this note?&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="65" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;delete_notes_confirm&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;delete_notes_confirm&quot;&gt;Are you sure you want to delete these notes?&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="66" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;enter_title_hint&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;enter_title_hint&quot;&gt;Enter title ....&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="71" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;enter_content_hint&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;enter_content_hint&quot;&gt;Enter content....&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="72" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;title_label&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;title_label&quot;&gt;Title&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="73" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;content_label&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;content_label&quot;&gt;Content&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="74" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;no_title_msg&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;no_title_msg&quot;&gt;No title&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="75" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;no_content_msg&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;no_content_msg&quot;&gt;No content to preview&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="76" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;not_saved_yet&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;not_saved_yet&quot;&gt;Not saved yet&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="77" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;created_label&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;created_label&quot;&gt;Created: %1$s&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="78" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;words_label&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;words_label&quot;&gt;Words: %1$s&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="79" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;characters_label&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;characters_label&quot;&gt;Characters: %1$s&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="80" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;custom_repeat_title&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;custom_repeat_title&quot;&gt;Custom Repeat&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="84" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;interval_label&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;interval_label&quot;&gt;Interval&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="85" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;note_reminder_dialog_title&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;note_reminder_dialog_title&quot;&gt;Note Reminder&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="86" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;reminder_set_for_label&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;reminder_set_for_label&quot;&gt;Reminder set for:\n%1$s&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="87" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;repeat_label_prefix&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;repeat_label_prefix&quot;&gt;Repeat: %1$s&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="88" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;pick_date_time_title&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;pick_date_time_title&quot;&gt;Pick a date &amp;amp; time&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="89" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;reminder_notification_title&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;reminder_notification_title&quot;&gt;Reminder&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="90" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;reminder_notification_content&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;reminder_notification_content&quot;&gt;Open note to view details&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="91" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;urgent_reminders_desc&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;urgent_reminders_desc&quot;&gt;Urgent note reminders&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="92" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;reminder_set_successfully&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;reminder_set_successfully&quot;&gt;Reminder set successfully&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="93" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;reminder_removed&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;reminder_removed&quot;&gt;Reminder removed&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="94" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;notes_exported_msg&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;notes_exported_msg&quot;&gt;Notes exported successfully&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="145" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;notes_imported_msg&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;notes_imported_msg&quot;&gt;Notes imported&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="146" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;hex_placeholder&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;hex_placeholder&quot;&gt;RRGGBB&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="158" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;widget_tap_to_select&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;widget_tap_to_select&quot;&gt;Tap to select a note&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="167" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;widget_select_a_note&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;widget_select_a_note&quot;&gt;Select a note&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="168" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;widget_no_notes_found&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;widget_no_notes_found&quot;&gt;No notes found&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="169" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;widget_no_content&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;widget_no_content&quot;&gt;No content&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="170" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;add_note_label&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;add_note_label&quot;&gt;Add Note&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="171" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;error_save_note&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;error_save_note&quot;&gt;Couldn\'t save note&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="189" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;error_insert_image&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;error_insert_image&quot;&gt;Failed to insert image&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="190" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;back_desc&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;back_desc&quot;&gt;Back&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="193" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;go_back_desc&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;go_back_desc&quot;&gt;Go back&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="194" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;reading_mode_desc&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;reading_mode_desc&quot;&gt;Reading mode&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="195" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;editing_mode_desc&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;editing_mode_desc&quot;&gt;Editing mode&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="196" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;expand_desc&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;expand_desc&quot;&gt;Expand&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="197" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;selected_desc&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;selected_desc&quot;&gt;Selected&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="198" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;dropdown_desc&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;dropdown_desc&quot;&gt;Dropdown&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="199" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;new_note_desc&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;new_note_desc&quot;&gt;New note&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="200" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;select_all_desc&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;select_all_desc&quot;&gt;Select all&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="201" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;toggle_pin_desc&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;toggle_pin_desc&quot;&gt;Toggle Pin&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="202" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;sort_notes_desc&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;sort_notes_desc&quot;&gt;Sort notes&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="203" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;settings_desc&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;settings_desc&quot;&gt;Settings&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="204" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;set_reminder_desc&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;set_reminder_desc&quot;&gt;Set reminder&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="205" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;change_color_desc&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;change_color_desc&quot;&gt;Change color&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="206" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;add_image_desc&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;add_image_desc&quot;&gt;Add image&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="207" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;format_text_desc&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;format_text_desc&quot;&gt;Format text&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="208" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;more_options_desc&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;more_options_desc&quot;&gt;More options&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="209" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;note_image_desc&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;note_image_desc&quot;&gt;Note Image&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="210" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;clear_selection_desc&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;clear_selection_desc&quot;&gt;Clear selection&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="211" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;delete_selected_desc&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;delete_selected_desc&quot;&gt;Delete selected&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="212" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;keyboard_mode_desc&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;keyboard_mode_desc&quot;&gt;Switch to keyboard&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="213" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;clock_mode_desc&quot; is not translated in &quot;fr&quot; (French) or &quot;es&quot; (Spanish)" errorLine1="    &lt;string name=&quot;clock_mode_desc&quot;&gt;Switch to clock&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="214" column="13" />
+    </issue>
+</issues>

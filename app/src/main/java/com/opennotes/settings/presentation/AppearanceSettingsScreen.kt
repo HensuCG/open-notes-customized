@@ -162,6 +162,24 @@ fun AppearanceSettingsScreen(
                 HorizontalDivider(color = MaterialTheme.colorScheme.surfaceVariant)
             }
             item {
+                SettingItem(
+                    title = stringResource(R.string.pure_black_widgets_title),
+                    subtitle = stringResource(R.string.pure_black_widgets_subtitle),
+                    icon = Icons.Default.DarkMode,
+                    trailing = {
+                        SettingsSwitch(
+                            isChecked = settings.pureBlackWidgets,
+                            onCheckedChange = { viewModel.updatePureBlackWidgets(it) },
+                        )
+                    },
+                    isFirst = false,
+                    isLast = false,
+                )
+            }
+            item {
+                HorizontalDivider(color = MaterialTheme.colorScheme.surfaceVariant)
+            }
+            item {
                 AppIconPicker(
                     currentIcon = settings.appIcon,
                     onIconChange = { selectedIcon ->

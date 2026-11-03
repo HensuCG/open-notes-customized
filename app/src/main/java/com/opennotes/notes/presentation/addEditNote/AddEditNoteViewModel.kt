@@ -23,6 +23,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -72,6 +73,16 @@ class AddEditNoteViewModel
                 ),
             )
         val noteContent: State<NoteTextFieldState> = _noteContent
+
+        private val _autoNumberLines = mutableStateOf(savedStateHandle.get<Boolean>("autoNumberLines") ?: false)
+        val autoNumberLines: State<Boolean> = _autoNumberLines
+
+        private fun updateContent(text: String) {
+            val content = if (_autoNumberLines.value) LineNumbering.renumber(TextFieldValue(text)).text else text
+            _noteContent.value = _noteContent.value.copy(text = content)
+            savedStateHandle["content"] = content
+            triggerAutoSave()
+        }
 
         private val _noteColor =
             mutableIntStateOf(
@@ -217,6 +228,7 @@ class AddEditNoteViewModel
                         repeatInterval = repeatInterval,
                         repeatUnit = repeatUnit,
                         id = currentNoteId,
+                        autoNumberLines = _autoNumberLines.value,
                     )
                 val insertedId = noteUseCases.addNote(note)
                 if (currentNoteId == null) {
@@ -243,6 +255,10 @@ class AddEditNoteViewModel
                             _noteReminderTime.value = note.reminderTime
                             _noteRepeatInterval.value = note.repeatInterval
                             _noteRepeatUnit.value = note.repeatUnit
+                            if (!savedStateHandle.contains("autoNumberLines")) {
+                                _autoNumberLines.value = note.autoNumberLines
+                                savedStateHandle["autoNumberLines"] = note.autoNumberLines
+                            }
                             if (savedStateHandle.get<String>("title") == null) {
                                 _noteTitle.value =
                                     noteTitle.value.copy(
@@ -294,9 +310,12 @@ class AddEditNoteViewModel
                         )
                 }
                 is AddEditNoteEvent.EnteredContent -> {
-                    _noteContent.value = _noteContent.value.copy(text = event.value)
-                    savedStateHandle["content"] = event.value
-                    triggerAutoSave()
+                    updateContent(event.value)
+                }
+                is AddEditNoteEvent.ToggleLineNumbering -> {
+                    _autoNumberLines.value = !_autoNumberLines.value
+                    savedStateHandle["autoNumberLines"] = _autoNumberLines.value
+                    updateContent(_noteContent.value.text)
                 }
                 is AddEditNoteEvent.ChangeColor -> {
                     _noteColor.intValue = event.color
@@ -340,8 +359,7 @@ class AddEditNoteViewModel
                                     } else {
                                         "$currentText\n\n!($localPath)\n"
                                     }
-                                _noteContent.value = _noteContent.value.copy(text = newText)
-                                savedStateHandle["content"] = newText
+                                updateContent(newText)
                             } else {
                                 _eventFlow.emit(UiEvent.ShowSnackbar(messageResId = R.string.error_insert_image))
                             }

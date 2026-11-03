@@ -6,6 +6,7 @@ app/build/
 app/*/release/
 app/*/debug/
 local.properties
+/.signing/
 
 # Compiled class files
 *.iml

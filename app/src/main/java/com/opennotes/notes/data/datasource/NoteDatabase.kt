@@ -25,13 +25,20 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 
 @Database(
     entities = [NoteEntity::class],
-    version = 6,
+    version = 7,
 )
 abstract class NoteDatabase : RoomDatabase() {
     abstract val noteDao: NoteDao
 
     companion object {
         const val DATABASE_NAME = "notes_db"
+
+        val MIGRATION_6_7 =
+            object : Migration(6, 7) {
+                override fun migrate(db: SupportSQLiteDatabase) {
+                    db.execSQL("ALTER TABLE Note ADD COLUMN autoNumberLines INTEGER NOT NULL DEFAULT 0")
+                }
+            }
 
         val MIGRATION_2_3 =
             object : Migration(2, 3) {
