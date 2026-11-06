@@ -10,3 +10,5 @@
 - Pure black widgets are independent of the app and system theme. Apply black backgrounds and white text to note, empty-state, and add-note widgets. Refresh both widget types after the preference changes.
 - Add user-facing strings to English, French, and Spanish resources. Keep README usage and release instructions current.
 - `app/lint-baseline.xml` records only the 65 pre-existing upstream translation gaps. Do not add new feature strings or suppress other checks in that baseline.
+- Both note-field overloads must request `KeyboardCapitalization.Sentences` so the IME can capitalize after sentence punctuation. Preserve user-entered text and casing; do not implement capitalization by rewriting note content.
+- Use `android emulator list` to find an AVD, create `medium_phone` if needed, and start it with the Android CLI for keyboard and input behavior changes. Run `NoteKeyboardCapitalizationTest` against Android's actual input connection, not just a keyboard-options constant.

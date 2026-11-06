@@ -21,6 +21,7 @@ package com.opennotes.notes.presentation.addEditNote.components
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -32,7 +33,11 @@ import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.TextFieldValue
+
+// Ask the IME to capitalize sentences; leave the user's actual text and casing intact.
+private val noteKeyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Sentences)
 
 @Composable
 fun TransParentHintTextField(
@@ -51,6 +56,7 @@ fun TransParentHintTextField(
         value = text,
         onValueChange = onValueChange,
         singleLine = singleLine,
+        keyboardOptions = noteKeyboardOptions,
         textStyle = textStyle,
         cursorBrush = SolidColor(textStyle.color),
         interactionSource = interactionSource,
@@ -93,6 +99,7 @@ fun TransParentHintTextField(
         value = textFieldValue,
         onValueChange = onValueChange,
         singleLine = singleLine,
+        keyboardOptions = noteKeyboardOptions,
         textStyle = textStyle,
         cursorBrush = SolidColor(textStyle.color),
         interactionSource = interactionSource,
