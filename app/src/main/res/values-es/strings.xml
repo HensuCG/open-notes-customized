@@ -124,4 +124,5 @@
     <string name="file_open_error">No se puede abrir este archivo de texto. Usa UTF-8 o un archivo Unicode con BOM, de hasta 4 MB.</string>
     <string name="file_save_error">No se pudo guardar el archivo. Se conserva el borrador; intenta guardar una copia.</string>
     <string name="file_changed_error">El archivo cambió fuera de la aplicación. Guarda una copia para conservar ambas versiones.</string>
+    <string name="file_too_large">Este archivo supera los 4 MB. Se conserva el borrador. Reduce su tamaño antes de guardarlo.</string>
 </resources>

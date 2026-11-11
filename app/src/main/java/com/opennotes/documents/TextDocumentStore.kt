@@ -1,7 +1,6 @@
 package com.opennotes.documents
 
 import android.content.Context
-import android.content.Intent
 import android.net.Uri
 import android.provider.DocumentsContract
 import android.provider.OpenableColumns
@@ -29,7 +28,7 @@ class TextDocumentStore(private val context: Context) {
         while (true) {
             val count = read(buffer)
             if (count < 0) break
-            require(output.size() + count <= TextFileCodec.MAX_BYTES) { "File too large" }
+            if (output.size() + count > TextFileCodec.MAX_BYTES) throw TextFileTooLargeException()
             output.write(buffer, 0, count)
         }
         return output.toByteArray()

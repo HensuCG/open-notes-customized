@@ -71,7 +71,7 @@ class TextFileViewModel(application: Application, private val savedState: SavedS
                 loaded = true
             } catch (e: Exception) {
                 if (e is CancellationException) throw e
-                message = R.string.file_open_error
+                message = if (e is TextFileTooLargeException) R.string.file_too_large else R.string.file_open_error
             } finally {
                 busy = false
             }
@@ -124,7 +124,7 @@ class TextFileViewModel(application: Application, private val savedState: SavedS
                 message = R.string.file_changed_error
             } catch (e: Exception) {
                 if (e is CancellationException) throw e
-                message = R.string.file_save_error
+                message = if (e is TextFileTooLargeException) R.string.file_too_large else R.string.file_save_error
             } finally {
                 busy = false
             }

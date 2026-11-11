@@ -1,15 +1,18 @@
 package com.opennotes.documents
 
 import java.nio.ByteBuffer
-import java.nio.charset.CharacterCodingException
 import java.nio.charset.Charset
 import java.nio.charset.CodingErrorAction
+
+class TextFileTooLargeException : Exception()
 
 /** Keep a document's encoding, BOM, and newline convention when writing it back. */
 data class TextFileFormat(val charset: String, val bom: ByteArray, val newline: String) {
     fun encode(text: String): ByteArray {
         val normalized = text.replace("\r\n", "\n").replace('\r', '\n').replace("\n", newline)
-        return bom + normalized.toByteArray(Charset.forName(charset))
+        val bytes = bom + normalized.toByteArray(Charset.forName(charset))
+        if (bytes.size > TextFileCodec.MAX_BYTES) throw TextFileTooLargeException()
+        return bytes
     }
 }
 
@@ -22,7 +25,7 @@ object TextFileCodec {
         mime?.startsWith("text/") == true || mime in mimeTypes || name.substringAfterLast('.', "").lowercase() in extensions
 
     fun decode(bytes: ByteArray): Pair<String, TextFileFormat> {
-        require(bytes.size <= MAX_BYTES) { "File too large" }
+        if (bytes.size > MAX_BYTES) throw TextFileTooLargeException()
         val signatures = listOf(
             byteArrayOf(0, 0, 0xFE.toByte(), 0xFF.toByte()) to "UTF-32BE",
             byteArrayOf(0xFF.toByte(), 0xFE.toByte(), 0, 0) to "UTF-32LE",

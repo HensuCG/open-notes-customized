@@ -227,4 +227,5 @@
     <string name="file_open_error">Cannot open this text file. Use UTF-8 or a Unicode file with a BOM, up to 4 MB.</string>
     <string name="file_save_error">Could not save the file. Your draft is kept; try saving a copy.</string>
     <string name="file_changed_error">This file changed outside the app. Save a copy to keep both versions.</string>
+    <string name="file_too_large">This file exceeds 4 MB. Your draft is kept. Reduce its size before saving.</string>
 </resources>
