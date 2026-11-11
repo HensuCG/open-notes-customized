@@ -27,6 +27,7 @@ import com.opennotes.notes.data.repository.JsonHandler
 import com.opennotes.notes.data.repository.KotlinxJsonHandler
 import com.opennotes.notes.data.repository.NoteRepositoryImpl
 import com.opennotes.notes.domain.repository.NoteRepository
+import com.opennotes.widget.WidgetUpdateScheduler
 import com.opennotes.notes.domain.usecase.AddNote
 import com.opennotes.notes.domain.usecase.DeleteNote
 import com.opennotes.notes.domain.usecase.ExportUseCases
@@ -62,7 +63,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideNoteRepository(db: NoteDatabase): NoteRepository = NoteRepositoryImpl(db.noteDao)
+    fun provideNoteRepository(db: NoteDatabase, widgetUpdates: WidgetUpdateScheduler): NoteRepository = NoteRepositoryImpl(db.noteDao, widgetUpdates::enqueue)
 
     // NEW: Provides the FileHandler implementation
     @Provides

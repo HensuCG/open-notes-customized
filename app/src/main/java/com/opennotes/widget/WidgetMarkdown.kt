@@ -29,6 +29,9 @@ import androidx.glance.Image
 import androidx.glance.ImageProvider
 import androidx.glance.LocalContext
 import androidx.glance.appwidget.CheckBox
+import androidx.glance.action.Action
+import androidx.glance.action.actionParametersOf
+import androidx.glance.appwidget.action.actionRunCallback
 import androidx.glance.appwidget.cornerRadius
 import androidx.glance.appwidget.lazy.LazyColumn
 import androidx.glance.background
@@ -59,27 +62,18 @@ fun WidgetText(
     fontSize: TextUnit = 15.sp,
     color: ColorProvider,
     onContentChange: (String) -> Unit = {},
+    noteId: Int? = null,
 ) {
     val lines = markdown.lines()
-    val lineProcessors =
-        listOf(
-            HeadingProcessor(),
-            ListItemProcessor(),
-            CodeBlockProcessor(),
-            QuoteProcessor(),
-            ImageInsertionProcessor(),
-            CheckboxProcessor(),
-        )
-    val markdownBuilder = MarkdownBuilder(lines, lineProcessors)
-    markdownBuilder.parse()
     MarkdownWidgetContent(
         modifier = modifier,
-        content = markdownBuilder.content.take(6), // Limit to 6 items to keep widget compact
+        content = parseMarkdownElements(markdown),
         weight = weight,
         lines = lines,
         fontSize = fontSize,
         color = color,
         onContentChange = onContentChange,
+        noteId = noteId,
     )
 }
 
@@ -92,6 +86,7 @@ fun MarkdownWidgetContent(
     color: ColorProvider,
     fontSize: TextUnit,
     onContentChange: (String) -> Unit,
+    noteId: Int?,
 ) {
     val context = LocalContext.current
     if (content.isEmpty()) {
@@ -115,6 +110,7 @@ fun MarkdownWidgetContent(
                 fontSize = fontSize,
                 lines = lines,
                 onContentChange = onContentChange,
+                noteId = noteId,
             )
         }
     }
@@ -130,6 +126,7 @@ fun WidgetMarkdownElement(
     weight: FontWeight,
     fontSize: TextUnit,
     onContentChange: (String) -> Unit,
+    noteId: Int?,
 ) {
     val element = content[index]
     val context = LocalContext.current
@@ -211,7 +208,16 @@ fun WidgetMarkdownElement(
                         )
                     },
                     checked = element.checked,
-                    onCheckedChange = null, // Read-only in widget for now
+                    onCheckedChange = noteId?.let { id ->
+                        actionRunCallback<ToggleNoteCheckboxAction>(
+                            actionParametersOf(
+                                ToggleNoteCheckboxAction.NoteId to id,
+                                ToggleNoteCheckboxAction.LineIndex to element.index,
+                                ToggleNoteCheckboxAction.ExpectedLine to lines[element.index],
+                                ToggleNoteCheckboxAction.Checked to !element.checked,
+                            ),
+                        )
+                    },
                 )
             }
             is ListItem -> {
@@ -303,14 +309,14 @@ fun WidgetMarkdownElement(
 fun MarkdownWidgetCheck(
     content: @Composable () -> Unit,
     checked: Boolean,
-    onCheckedChange: ((Boolean) -> Unit)? = null,
+    onCheckedChange: Action? = null,
 ) {
     Row(
         verticalAlignment = Alignment.Vertical.CenterVertically,
     ) {
         CheckBox(
             checked = checked,
-            onCheckedChange = null, // Ensure read-only UI behavior in glance checkbox
+            onCheckedChange = onCheckedChange,
             modifier = GlanceModifier.padding(end = 4.dp),
         )
         content()

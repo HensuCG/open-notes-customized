@@ -27,20 +27,28 @@ import kotlinx.coroutines.flow.map
 
 class NoteRepositoryImpl(
     private val dao: NoteDao,
+    private val onNotesChanged: () -> Unit,
 ) : NoteRepository {
     override fun getAllNotes(): Flow<List<Note>> = dao.getNotes().map { entities -> entities.map { it.toNote() } }
 
     override suspend fun getNoteById(id: Int): Note? = dao.getNoteById(id)?.toNote()
 
-    override suspend fun insertNote(note: Note): Int = dao.insertNote(note.toNoteEntity()).toInt()
+    override fun observeNoteById(id: Int): Flow<Note?> = dao.observeNoteById(id).map { it?.toNote() }
+
+    override suspend fun setCheckbox(id: Int, lineIndex: Int, expectedLine: String, checked: Boolean): Boolean =
+        dao.setCheckbox(id, lineIndex, expectedLine, checked).also { if (it) onNotesChanged() }
+
+    override suspend fun insertNote(note: Note): Int = dao.insertNote(note.toNoteEntity()).toInt().also { onNotesChanged() }
 
     override suspend fun deleteNote(note: Note) {
         dao.deleteNote(note.toNoteEntity())
+        onNotesChanged()
     }
 
     override fun searchNotes(query: String): Flow<List<Note>> = dao.searchNotes(query).map { entities -> entities.map { it.toNote() } }
 
     override suspend fun insertNotes(notes: List<Note>) {
         dao.insertAll(notes.map { it.toNoteEntity() })
+        onNotesChanged()
     }
 }

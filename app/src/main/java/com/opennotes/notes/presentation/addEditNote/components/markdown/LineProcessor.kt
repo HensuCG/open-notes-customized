@@ -55,14 +55,14 @@ class CodeBlockProcessor : MarkdownLineProcessor {
 }
 
 class CheckboxProcessor : MarkdownLineProcessor {
-    override fun canProcessLine(line: String): Boolean = line.matches(Regex("^([\\-*]\\s*)?\\[[ xX]]( .*)?"))
+    override fun canProcessLine(line: String): Boolean = line.matches(Regex("^\\s*(?:[-*+]\\s+)?\\[[ xX]](?:\\s.*)?$"))
 
     override fun processLine(
         line: String,
         builder: MarkdownBuilder,
     ) {
-        val checked = line.contains(Regex("\\[[Xx]]"))
-        val text = line.replace(Regex("^([\\-*]\\s*)?\\[[ xX]] ?"), "").trim()
+        val checked = Regex("^\\s*(?:[-*+]\\s+)?\\[([ xX])]").find(line)?.groupValues?.get(1) != " "
+        val text = line.replace(Regex("^\\s*(?:[-*+]\\s+)?\\[[ xX]] ?"), "").trim()
         builder.add(CheckboxItem(text, checked, builder.lineIndex))
     }
 }
@@ -177,9 +177,9 @@ fun String.stripMarkdown(): String {
             trimmedLine.startsWith(">") -> {
                 processedLine = processedLine.dropWhile { it == '>' }.trim()
             }
-            trimmedLine.matches(Regex("^([\\-*]\\s*)?\\[[ xX]]( .*)?")) -> {
+            trimmedLine.matches(Regex("^\\s*(?:[-*+]\\s+)?\\[[ xX]](?:\\s.*)?$")) -> {
                 val isChecked = processedLine.contains(Regex("\\[[Xx]]"))
-                val text = trimmedLine.replace(Regex("^([\\-*]\\s*)?\\[[ xX]] ?"), "").trim()
+                val text = trimmedLine.replace(Regex("^\\s*(?:[-*+]\\s+)?\\[[ xX]] ?"), "").trim()
                 processedLine = (if (isChecked) "[✓] " else "[ ] ") + text
             }
             trimmedLine.startsWith("- ") ||

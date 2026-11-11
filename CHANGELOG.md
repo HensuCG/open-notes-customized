@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.6.0 (version code 19)
+
+- Added external text document editing from the app or a file manager, with explicit Save and Save a copy, read-only handling, private drafts, conflict detection and preserved Unicode encoding/BOM/newlines.
+- Made widget checkboxes update the note database and open editors; added durable refreshes after all note writes, imports and deletions.
+- Fixed bullet checklists rendering as ordinary lists and removed the six-item widget cutoff.
+
 ## 1.5.1 (version code 18)
 
 - Fixed note title and body fields omitting the keyboard's sentence-capitalization request. Compatible keyboards can now capitalize after `. `, `? `, and `! ` while preserving text typed or pasted by the user.

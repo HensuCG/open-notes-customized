@@ -34,6 +34,7 @@ import androidx.work.WorkManager
 import com.opennotes.R
 import com.opennotes.notes.data.repository.FileHandler
 import com.opennotes.notes.domain.model.Note
+import com.opennotes.notes.domain.util.Checklist
 import com.opennotes.notes.domain.usecase.NoteUseCases
 import com.opennotes.notes.presentation.reminder.ReminderWorker
 import com.opennotes.ui.theme.NoteColorPalette
@@ -43,6 +44,8 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import java.util.Calendar
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
@@ -108,6 +111,32 @@ class AddEditNoteViewModel
         private var currentNoteId: Int? = null
         private var currentIsPinned: Boolean = false
         private var autoSaveJob: Job? = null
+        private var observeJob: Job? = null
+        private val saveMutex = Mutex()
+        private var persistedContent: String? = null
+        private var persistedTitle: String? = null
+
+        private fun applyRemoteNote(note: Note) {
+            val content = Checklist.merge(persistedContent ?: note.content, _noteContent.value.text, note.content)
+            _noteContent.value = _noteContent.value.copy(text = content)
+            savedStateHandle["content"] = content
+            if (_noteTitle.value.text == persistedTitle) {
+                _noteTitle.value = _noteTitle.value.copy(text = note.title)
+                savedStateHandle["title"] = note.title
+            }
+            persistedContent = note.content
+            persistedTitle = note.title
+            savedStateHandle["persisted_content"] = note.content
+            savedStateHandle["persisted_title"] = note.title
+            currentIsPinned = note.isPinned
+        }
+
+        private fun observeNote(id: Int) {
+            observeJob?.cancel()
+            observeJob = viewModelScope.launch {
+                noteUseCases.getNote.observe(id).collect { note -> note?.let(::applyRemoteNote) }
+            }
+        }
 
         // Track if reminder was manually changed in this session to prevent overwrite from DB fetch
         private var isReminderDirty = false
@@ -185,7 +214,10 @@ class AddEditNoteViewModel
             WorkManager.getInstance(application).cancelUniqueWork("reminder_work_$noteId")
         }
 
-        private suspend fun saveNoteInternal(): Int? {
+        private suspend fun saveNoteInternal(): Int? = saveMutex.withLock { saveNoteLocked() }
+
+        private suspend fun saveNoteLocked(): Int? {
+            currentNoteId?.let { noteUseCases.getNote(it)?.let(::applyRemoteNote) }
             val title = noteTitle.value.text
             val content = noteContent.value.text
             if (title.isBlank() && content.isBlank()) {
@@ -234,6 +266,9 @@ class AddEditNoteViewModel
                 if (currentNoteId == null) {
                     currentNoteId = insertedId
                     _noteTimestamp.value = createdAt
+                    persistedContent = note.content
+                    persistedTitle = note.title
+                    observeNote(insertedId)
                 }
 
                 isReminderDirty = false
@@ -250,6 +285,8 @@ class AddEditNoteViewModel
                     viewModelScope.launch {
                         noteUseCases.getNote(noteId)?.also { note ->
                             currentNoteId = note.id
+                            persistedContent = savedStateHandle.get<String>("persisted_content") ?: note.content
+                            persistedTitle = savedStateHandle.get<String>("persisted_title") ?: note.title
                             currentIsPinned = note.isPinned
                             _noteTimestamp.value = note.createdAt
                             _noteReminderTime.value = note.reminderTime
@@ -279,6 +316,7 @@ class AddEditNoteViewModel
                                 savedStateHandle["content"] = note.content
                                 savedStateHandle["color"] = note.color
                             }
+                            observeNote(noteId)
                         }
                     }
                 }

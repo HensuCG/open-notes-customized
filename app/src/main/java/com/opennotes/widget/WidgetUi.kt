@@ -38,6 +38,8 @@ import androidx.glance.layout.Column
 import androidx.glance.layout.Spacer
 import androidx.glance.layout.fillMaxSize
 import androidx.glance.layout.height
+import androidx.glance.layout.fillMaxWidth
+import com.opennotes.notes.presentation.addEditNote.components.markdown.stripMarkdown
 import androidx.glance.layout.padding
 import androidx.glance.text.FontWeight
 import androidx.glance.text.Text
@@ -123,17 +125,17 @@ fun SelectedNote(
             }
 
         if (note.title.isNotBlank()) {
-            WidgetText(
-                markdown = note.title,
-                weight = FontWeight.Bold,
-                fontSize = 18.sp,
-                color = contentColor,
-                onContentChange = {},
+            Text(
+                text = note.title.stripMarkdown(),
+                style = TextStyle(color = contentColor, fontWeight = FontWeight.Bold, fontSize = 18.sp),
+                maxLines = 2,
             )
             Spacer(modifier = GlanceModifier.height(8.dp))
         }
         WidgetText(
+            modifier = GlanceModifier.fillMaxWidth().defaultWeight(),
             markdown = note.content,
+            noteId = note.id,
             color = contentColor,
             onContentChange = {},
         )

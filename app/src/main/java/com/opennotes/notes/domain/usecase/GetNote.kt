@@ -25,4 +25,6 @@ class GetNote(
     private val repository: NoteRepository,
 ) {
     suspend operator fun invoke(id: Int): Note? = repository.getNoteById(id)
+
+    fun observe(id: Int) = repository.observeNoteById(id)
 }

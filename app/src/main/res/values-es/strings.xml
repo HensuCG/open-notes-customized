@@ -112,4 +112,16 @@
     <string name="auto_number_lines">Numerar las líneas automáticamente</string>
     <string name="line_numbering_on">Numeración automática activada</string>
     <string name="line_numbering_off">Numeración automática desactivada</string>
+    <string name="open_text_file">Abrir archivo de texto</string>
+    <string name="save_text_file">Guardar archivo</string>
+    <string name="save_file_copy">Guardar una copia</string>
+    <string name="discard_file_changes">Descartar</string>
+    <string name="file_unsaved">Cambios sin guardar</string>
+    <string name="file_unsaved_prompt">¿Guardar los cambios antes de cerrar este archivo?</string>
+    <string name="file_read_only">Este archivo es de solo lectura. Edítalo y guarda una copia.</string>
+    <string name="file_ready">Editando el archivo original</string>
+    <string name="file_saved">Archivo guardado</string>
+    <string name="file_open_error">No se puede abrir este archivo de texto. Usa UTF-8 o un archivo Unicode con BOM, de hasta 4 MB.</string>
+    <string name="file_save_error">No se pudo guardar el archivo. Se conserva el borrador; intenta guardar una copia.</string>
+    <string name="file_changed_error">El archivo cambió fuera de la aplicación. Guarda una copia para conservar ambas versiones.</string>
 </resources>

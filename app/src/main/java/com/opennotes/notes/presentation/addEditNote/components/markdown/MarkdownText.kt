@@ -219,21 +219,7 @@ fun MarkdownText(
     val parsedContent =
         remember(markdown) {
             try {
-                val lines = markdown.lines()
-                val lineProcessors =
-                    listOf(
-                        HeadingProcessor(),
-                        ListItemProcessor(),
-                        CodeBlockProcessor(),
-                        QuoteProcessor(),
-                        ImageInsertionProcessor(),
-                        CheckboxProcessor(),
-                        LinkProcessor(),
-                        HorizontalRuleProcessor(),
-                    )
-                val markdownBuilder = MarkdownBuilder(lines, lineProcessors)
-                markdownBuilder.parse()
-                markdownBuilder.content
+                parseMarkdownElements(markdown)
             } catch (e: Exception) {
                 listOf(NormalText(markdown))
             }
@@ -398,17 +384,9 @@ fun RenderMarkdownElement(
                         null
                     } else {
                         { newChecked ->
-                            val updatedLines = lines.toMutableList()
-                            val original = updatedLines[element.index]
-                            val match = Regex("^([\\-*]\\s*)?\\[[ xX]]").find(original)
-                            if (match != null) {
-                                updatedLines[element.index] =
-                                    original.replaceRange(
-                                        match.range,
-                                        match.groupValues[1] + if (newChecked) "[x]" else "[ ]",
-                                    )
-                                onContentChange(updatedLines.joinToString("\n"))
-                            }
+                            com.opennotes.notes.domain.util.Checklist.setChecked(
+                                lines.joinToString("\n"), element.index, lines[element.index], newChecked,
+                            )?.let(onContentChange)
                         }
                     },
             )

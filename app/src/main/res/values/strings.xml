@@ -215,4 +215,16 @@
     <string name="navigate_desc">Navigate</string>
     <string name="github_content_desc">GitHub</string>
 
+    <string name="open_text_file">Open text file</string>
+    <string name="save_text_file">Save file</string>
+    <string name="save_file_copy">Save a copy</string>
+    <string name="discard_file_changes">Discard</string>
+    <string name="file_unsaved">Unsaved changes</string>
+    <string name="file_unsaved_prompt">Save your changes before closing this file?</string>
+    <string name="file_read_only">This file is read-only. Edit it and save a copy.</string>
+    <string name="file_ready">Editing original file</string>
+    <string name="file_saved">File saved</string>
+    <string name="file_open_error">Cannot open this text file. Use UTF-8 or a Unicode file with a BOM, up to 4 MB.</string>
+    <string name="file_save_error">Could not save the file. Your draft is kept; try saving a copy.</string>
+    <string name="file_changed_error">This file changed outside the app. Save a copy to keep both versions.</string>
 </resources>

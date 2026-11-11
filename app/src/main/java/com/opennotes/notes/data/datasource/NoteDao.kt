@@ -23,6 +23,8 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Transaction
+import com.opennotes.notes.domain.util.Checklist
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -41,6 +43,17 @@ interface NoteDao {
 
     @Query("SELECT * FROM Note WHERE title LIKE '%' || :query || '%' OR content LIKE '%' || :query || '%'")
     fun searchNotes(query: String): Flow<List<NoteEntity>>
+
+    @Query("SELECT * FROM Note WHERE id=:id")
+    fun observeNoteById(id: Int): Flow<NoteEntity?>
+
+    @Transaction
+    suspend fun setCheckbox(id: Int, lineIndex: Int, expectedLine: String, checked: Boolean): Boolean {
+        val note = getNoteById(id) ?: return false
+        val content = Checklist.setChecked(note.content, lineIndex, expectedLine, checked) ?: return false
+        insertNote(note.copy(content = content, updatedAt = System.currentTimeMillis()))
+        return true
+    }
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(notes: List<NoteEntity>)

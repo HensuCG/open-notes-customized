@@ -56,6 +56,16 @@ class MarkdownBuilder(
     }
 }
 
+/** Shared by the app and widgets so task syntax and source line indices stay identical. */
+fun parseMarkdownElements(markdown: String): List<MarkdownElement> {
+    val builder = MarkdownBuilder(
+        markdown.lines(),
+        listOf(CodeBlockProcessor(), CheckboxProcessor(), HeadingProcessor(), ListItemProcessor(), QuoteProcessor(), ImageInsertionProcessor(), LinkProcessor(), HorizontalRuleProcessor()),
+    )
+    builder.parse()
+    return builder.content.toList()
+}
+
 /**
  * Splits the input string by the specified delimiter and returns a list of index pairs.
  * Each pair represents the start and end indices of segments between delimiters.

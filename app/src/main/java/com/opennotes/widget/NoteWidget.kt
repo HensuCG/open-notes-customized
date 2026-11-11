@@ -30,6 +30,8 @@ import androidx.glance.appwidget.provideContent
 import androidx.glance.currentState
 import androidx.glance.state.PreferencesGlanceStateDefinition
 import com.opennotes.notes.domain.usecase.NoteUseCases
+import com.opennotes.notes.domain.repository.NoteRepository
+import kotlinx.coroutines.flow.first
 import com.opennotes.settings.data.repository.DataStoreRepository
 import dagger.hilt.EntryPoint
 import dagger.hilt.EntryPoints
@@ -40,6 +42,8 @@ import dagger.hilt.components.SingletonComponent
 @InstallIn(SingletonComponent::class)
 interface WidgetModelRepositoryEntryPoint {
     fun noteUseCase(): NoteUseCases
+
+    fun noteRepository(): NoteRepository
 
     fun settingsRepository(): DataStoreRepository
 }
@@ -67,13 +71,14 @@ class NotesWidget : GlanceAppWidget() {
         val widgetId = GlanceAppWidgetManager(context).getAppWidgetId(id)
         val settingsRepository = getWidgetSettingsRepository(context)
         val initialSettings = settingsRepository.getSettings()
+        val initialNotes = noteUseCase.getNotes().first()
 
         provideContent {
             val settings by settingsRepository.getSettingsFlow().collectAsState(initialSettings)
             WidgetTheme(pureBlack = settings.pureBlackWidgets) {
                 val prefs = currentState<Preferences>()
                 val noteId = prefs[intPreferencesKey("note_$widgetId")]
-                val notes by noteUseCase.getNotes().collectAsState(initial = emptyList())
+                val notes by noteUseCase.getNotes().collectAsState(initial = initialNotes)
                 val selectedNote = notes.firstOrNull { it.id == noteId }
 
                 when {

@@ -18,6 +18,8 @@
 
 package com.opennotes.notes.presentation.notes
 
+import android.content.Intent
+import com.opennotes.documents.TextFileActivity
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -30,6 +32,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.filled.FolderOpen
 import androidx.compose.material.icons.filled.GridView
 import androidx.compose.material.icons.filled.PushPin
 import androidx.compose.material.icons.filled.Search
@@ -256,6 +259,9 @@ fun NotesScreen(
                                             contentDescription = stringResource(R.string.notes_layout_toggle),
                                             modifier = Modifier.size(25.dp),
                                         )
+                                    }
+                                    IconButton(onClick = { context.startActivity(Intent(context, TextFileActivity::class.java)) }) {
+                                        Icon(Icons.Default.FolderOpen, stringResource(R.string.open_text_file))
                                     }
                                     IconButton(onClick = { showSortSheet = true }) {
                                         Icon(

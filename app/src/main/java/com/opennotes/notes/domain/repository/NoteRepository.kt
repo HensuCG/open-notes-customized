@@ -26,6 +26,10 @@ interface NoteRepository {
 
     suspend fun getNoteById(id: Int): Note?
 
+    fun observeNoteById(id: Int): Flow<Note?>
+
+    suspend fun setCheckbox(id: Int, lineIndex: Int, expectedLine: String, checked: Boolean): Boolean
+
     suspend fun insertNote(note: Note): Int
 
     suspend fun deleteNote(note: Note)

@@ -112,4 +112,16 @@
     <string name="auto_number_lines">Numéroter automatiquement les lignes</string>
     <string name="line_numbering_on">Numérotation automatique activée</string>
     <string name="line_numbering_off">Numérotation automatique désactivée</string>
+    <string name="open_text_file">Ouvrir un fichier texte</string>
+    <string name="save_text_file">Enregistrer le fichier</string>
+    <string name="save_file_copy">Enregistrer une copie</string>
+    <string name="discard_file_changes">Abandonner</string>
+    <string name="file_unsaved">Modifications non enregistrées</string>
+    <string name="file_unsaved_prompt">Enregistrer les modifications avant de fermer ce fichier ?</string>
+    <string name="file_read_only">Ce fichier est en lecture seule. Modifiez-le et enregistrez une copie.</string>
+    <string name="file_ready">Modification du fichier original</string>
+    <string name="file_saved">Fichier enregistré</string>
+    <string name="file_open_error">Impossible d’ouvrir ce fichier texte. Utilisez UTF-8 ou un fichier Unicode avec BOM, de 4 Mo maximum.</string>
+    <string name="file_save_error">Impossible d’enregistrer le fichier. Le brouillon est conservé ; essayez d’enregistrer une copie.</string>
+    <string name="file_changed_error">Ce fichier a été modifié hors de l’application. Enregistrez une copie pour conserver les deux versions.</string>
 </resources>
